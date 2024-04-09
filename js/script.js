@@ -58,6 +58,7 @@ let binarioParaLetra = function(bin){
     
 }
 
+let select = document.getElementById('select')
 let traduzir = document.getElementById('traduzir');
 let traduzido = document.getElementById('traduzido');
 let btn = document.getElementById('btn');
@@ -66,16 +67,32 @@ let btn = document.getElementById('btn');
 
 btn.addEventListener('click', () => {
 
-    let arr_traduzir = traduzir.value.split(' ');
-    console.log(arr_traduzir)
+    traduzido.value = ''
 
-    //---Palavra para binario--------------------------------------------------------------
-    for (let palavra of arr_traduzir){
-        for (let letra of palavra){
-            traduzido.value += letraParaBinario(letra) + ' '
-            
+    let arr_traduzir = traduzir.value.split(' ');
+    for (let espaco in arr_traduzir){
+        if (arr_traduzir[espaco] === ''){
+            arr_traduzir.splice(espaco, 1)
         }
-        traduzido.value += '| '
     }
-    //---Palavra para binario--------------------------------------------------------------
+
+    if (select.value == 'letraParaBinario'){
+
+        //---Palavra para binario--------------------------------------------------------------
+        for (let palavra of arr_traduzir){
+            for (let letra of palavra){
+                traduzido.value += letraParaBinario(letra) + ' '
+            }
+            // traduzido.value += letraParaBinario(' ')
+        }
+        //---Palavra para binario--------------------------------------------------------------
+    }else if (select.value == 'binarioParaLetra'){
+
+        //---Binario para palavra--------------------------------------------------------------
+        for (let binario of arr_traduzir){
+            traduzido.value += binarioParaLetra(binario)
+        }
+        //---Binario para palavra--------------------------------------------------------------
+    }
+
 })
