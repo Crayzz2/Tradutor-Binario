@@ -75,24 +75,39 @@ btn.addEventListener('click', () => {
             arr_traduzir.splice(espaco, 1)
         }
     }
+    try{
 
-    if (select.value == 'letraParaBinario'){
-
-        //---Palavra para binario--------------------------------------------------------------
-        for (let palavra of arr_traduzir){
-            for (let letra of palavra){
-                traduzido.value += letraParaBinario(letra) + ' '
+        if (select.value == 'letraParaBinario'){
+    
+            //---Palavra para binario--------------------------------------------------------------
+            outerFor: for (let palavra of arr_traduzir){
+                for (let letra of palavra){
+                    if(letra === '1' || letra ==='0'){
+                        alert('Você digitou um número na conversão de letra para binário.')
+                        break outerFor
+                    }else{
+                        traduzido.value += letraParaBinario(letra) + ' '
+                    }
+                }
             }
-            // traduzido.value += letraParaBinario(' ')
+            traduzido.value = traduzido.value.slice(0, -1)
+            //---Palavra para binario--------------------------------------------------------------
+    
+        }else if (select.value == 'binarioParaLetra'){
+    
+            //---Binario para palavra--------------------------------------------------------------
+            outerFor: for (let binario of arr_traduzir){
+                if (binario[0] === '1' || binario[0] === '0'){
+                    traduzido.value += binarioParaLetra(binario)
+                }else{
+                    alert('Você digitou uma letra ou um número inválido na conversão de binário para palavras.')
+                    break outerFor
+                }
+            }
+            //---Binario para palavra--------------------------------------------------------------
         }
-        //---Palavra para binario--------------------------------------------------------------
-    }else if (select.value == 'binarioParaLetra'){
-
-        //---Binario para palavra--------------------------------------------------------------
-        for (let binario of arr_traduzir){
-            traduzido.value += binarioParaLetra(binario)
-        }
-        //---Binario para palavra--------------------------------------------------------------
+    }catch(err){
+        console.log(err)
     }
 
 })
