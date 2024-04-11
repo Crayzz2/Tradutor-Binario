@@ -89,6 +89,7 @@ btn.addEventListener('click', () => {
                         traduzido.value += letraParaBinario(letra) + ' '
                     }
                 }
+                traduzido.value += letraParaBinario(' ') + ' '
             }
             traduzido.value = traduzido.value.slice(0, -1)
             //---Palavra para binario--------------------------------------------------------------
@@ -104,6 +105,7 @@ btn.addEventListener('click', () => {
                     break outerFor
                 }
             }
+            traduzido.value = traduzido.value.slice(0, -1)
             //---Binario para palavra--------------------------------------------------------------
         }
     }catch(err){
